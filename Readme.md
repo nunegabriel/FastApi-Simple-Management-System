@@ -25,7 +25,7 @@
 - [❓ FAQ (OPTIONAL)](#faq)
 - [📝 License](#license)
 
-# 📖 Blog app<a name="about-project"></a>
+# 📖SIMPLE MANAGEMENT SYSTEM app<a name="about-project"></a>
 
 Ticket Management System Functionalities should include ticket_creation, ticket_update, ticket_deletion, ticket_viewing
 
