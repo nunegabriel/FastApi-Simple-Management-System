@@ -137,7 +137,7 @@ If you like this project, please leave a star 😁
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-We would like to thank the Microverse staff for all the efforts they put in define the requirements of this project.
+Thank you to everyone who helped
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
