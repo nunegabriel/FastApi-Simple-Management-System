@@ -1,7 +1,55 @@
 import psycopg2
 from fastapi import FastAPI
 
+from fastapi import FastAPI
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+# SQLAlchemy engine to connect to your PostgreSQL database
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:lgreqwr720@localhost/testing"
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+
+# SQLAlchemy session to interact with the database
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+
+class MyTable(Base):
+    __tablename__ = "events"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, index=True)
+    event = Column(String)
+
 app = FastAPI()
+
+# view 
+@app.get("/view-events/")
+async def get_items():
+    db = SessionLocal()
+    items = db.query(MyTable).all()
+    return items
+
+#delete
+@app.delete("/mytable/{item_id}")
+async def delete_item(item_id: int):
+    db = SessionLocal()
+    db.query(MyTable).filter(MyTable.id == item_id).delete()
+    db.commit()
+    return {"message": "Item deleted"}
+
+#edit
+@app.put("/mytable/{item_id}")
+async def update_item(item_id: int, name: str, event: str):
+    db = SessionLocal()
+    item = db.query(MyTable).filter(MyTable.id == item_id).first()
+    if not item:
+        return {"error": "Item not found"}
+    item.name = name
+    item.event = event
+    db.add(item)
+    db.commit()
+    return {"message": "Item updated"}
 
 # db details
 db_name = "testing"
