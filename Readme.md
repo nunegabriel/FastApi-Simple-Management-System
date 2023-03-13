@@ -83,17 +83,18 @@ Install this project with:
 
 ```sh
   gem install
-```
+``` -->
 
 ### Usage
 
 To run the project, execute the following command in your terminal:
 
 ```sh
-  ruby src/main.rb
+  uvicorn main:app --reload
+
 ```
 
-### Run tests
+<!-- ### Run tests
 
 To run tests, run the following command:
 
